@@ -16,7 +16,7 @@ const userSchema = new Schema({
         type: String,
         required: true, 
         trim: true,
-        select: true
+        select: false
     },
     phoneNumber: {
         type: String,

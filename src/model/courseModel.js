@@ -1,8 +1,6 @@
 import mongoose from "mongoose";
-import { Schema, model } from "mongoose";
-import subCategory from "./subCategoryModel";
 
-const courseSchema = new Schema({
+const courseSchema = new mongoose.Schema({
     title: {
         type: String,
         required: true,
@@ -40,7 +38,7 @@ const courseSchema = new Schema({
         {
             title: { type: String, required: true },
             url: { type: String, required: true },
-            duration: { type: Number }
+            duration: { type: Number, min: 1 }
         }
     ],
 
@@ -58,13 +56,13 @@ const courseSchema = new Schema({
         {
             question: { type: String},
             options: [{ type: String }],
-            correctAnswer: {type: string}
+            correctAnswer: {type: String}
         }
     ],
 
     assignments: [
         {
-            title: { type: string },
+            title: { type: String },
             instructions: { type: String },
             dueDate: { type: Date }
         }
@@ -91,9 +89,9 @@ const courseSchema = new Schema({
         type: Number,
         default: 0
     }
-    
+
 }, { timestamps: true });
 
-const Course = model("Course", courseSchema);
+const Course = mongoose.model("Course", courseSchema);
 
 export default Course;
